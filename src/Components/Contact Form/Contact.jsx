@@ -1,21 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Toast } from '../index';
 
 export default function Contact() {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const [ toast, setToast ] = useState(false);
 
     const onSubmit = (fromFields) => {
         console.log(fromFields);
+        setToast(true);
+    }
+
+    const onClose = () => {
+        setToast(false);
     }
 
   return (
     <div className='w-10/12 m-auto h-screen flex items-center justify-items-end'>
         <div className='w-full'>
-        <h1 className='text-4xl font-bold text-gray-800'>Let's Get in <span className='text-teal-600'>Touch</span> </h1>
-        <p className='font-semibold mt-1 text-gray-500'>Any questions? We would be happy to help you</p>
+            <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1}}>
+                <h1 className='text-4xl font-bold text-gray-800'>Let's Get in <span className='text-teal-600'>Touch</span> </h1>
+                <p className='font-semibold mt-1 text-gray-500'>Any questions? We would be happy to help you</p>
+            </motion.div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className='w-6/12 mt-10'>
+        <motion.form onSubmit={handleSubmit(onSubmit)} className='w-6/12 mt-10' initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1, delay: 1}}>
 
             <div className="grid gap-6 md:grid-cols-2 mb-6">
 
@@ -91,7 +101,16 @@ export default function Contact() {
             </div> 
 
             <button type="submit" className="text-white bg-teal-600 hover:bg-teal-600 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
-        </form>
+        
+        
+
+
+        </motion.form>
+
+        <AnimatePresence>
+            {toast && <Toast onClose={onClose}/> }
+        </AnimatePresence>
+
         </div>
     </div>
   )
