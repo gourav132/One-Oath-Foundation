@@ -36,7 +36,7 @@ export default function Contact() {
     }
 
   return (
-    <div className='w-10/12 m-auto h-screen flex items-center justify-items-end'>
+    <div className='md:w-10/12 m-auto h-screen flex items-center justify-items-end'>
         <div className='w-full'>
             <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1}}>
                 <h1 className='text-4xl font-bold text-gray-800'>Let's Get in <span className='text-teal-600'>Touch</span> </h1>
@@ -52,7 +52,7 @@ export default function Contact() {
             transition={{duration: 1, delay: 1}}
         >
             {/* Form fields with validation and styling */}
-            <div className="grid gap-6 md:grid-cols-2 mb-6">
+            <div className="grid grid-cols-2 gap-6 md:grid-cols-2 mb-6">
 
                 <div>
                     <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-700">Name</label>
