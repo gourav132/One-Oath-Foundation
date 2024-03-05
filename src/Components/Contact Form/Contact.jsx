@@ -1,18 +1,36 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { useForm } from 'react-hook-form';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Toast } from '../index';
 
 export default function Contact() {
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const [ toast, setToast ] = useState(false);
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();  // Form state management with react-hook-form
+    const [ toast, setToast ] = useState(false);   // State for managing toast visibility
+    const formRef = useRef(null);  // Ref to access the form element
 
-    const onSubmit = (fromFields) => {
-        console.log(fromFields);
-        setToast(true);
+     // Callback for handling form submission
+    const onSubmit = (formFields) => {
+        const formData = new FormData(formRef.current);
+
+         // Send form data to Google Sheets via a fetch request
+        fetch(
+            "https://script.google.com/macros/s/AKfycbwVhTiNOgFV7rSXwkeao8raAPNHU8E5OF9ZGATYYNVOfQQMPt4noUYtL9bA5glxXxiI/exec",
+            {
+              method: "POST",
+              body: formData
+            }
+          )
+            .then((res) => {
+                setToast(true)  // Show success toast
+                reset()  // Clear form fields
+            })
+            .catch((error) => {
+              console.log(error);  // Handling errors
+            });    
     }
 
+    // Callback for closing the toast
     const onClose = () => {
         setToast(false);
     }
@@ -25,14 +43,21 @@ export default function Contact() {
                 <p className='font-semibold mt-1 text-gray-500'>Any questions? We would be happy to help you</p>
             </motion.div>
 
-        <motion.form onSubmit={handleSubmit(onSubmit)} className='w-6/12 mt-10' initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1, delay: 1}}>
-
+        <motion.form 
+            ref={formRef} 
+            onSubmit={handleSubmit(onSubmit)} 
+            className='w-6/12 mt-10' 
+            initial={{opacity: 0}} 
+            animate={{opacity: 1}} 
+            transition={{duration: 1, delay: 1}}
+        >
+            {/* Form fields with validation and styling */}
             <div className="grid gap-6 md:grid-cols-2 mb-6">
 
                 <div>
                     <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-700">Name</label>
                     <input 
-                        {...register("FullName", {
+                        {...register("Name", {
                             required: "Please provide us with your name",
                             minLength: {
                                 value: 3,
@@ -43,7 +68,7 @@ export default function Contact() {
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg hover:ring-1 hover:ring-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-600 block w-full p-2.5" 
                         placeholder="John Doe" 
                     />
-                    <p id="helper-text-explanation" className="mt-2 text-xs text-red-500">{errors.FullName?.message}</p>
+                    <p id="helper-text-explanation" className="mt-2 text-xs text-red-500">{errors.Name?.message}</p>
                 </div>
 
                 <div>
@@ -108,6 +133,7 @@ export default function Contact() {
         </motion.form>
 
         <AnimatePresence>
+            {/* Conditionally render a toast based on toast state */}
             {toast && <Toast onClose={onClose}/> }
         </AnimatePresence>
 
