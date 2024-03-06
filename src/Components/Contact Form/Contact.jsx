@@ -43,12 +43,12 @@ export default function Contact() {
     }
 
   return (
-    <div className='mt-5 md:mt-0 w-11/12 md:w-10/12 m-auto md:h-screen flex items-center justify-items-end'>
+    <div className='mt-5 md:mt-0 w-11/12 md:w-10/12 m-auto md:h-screen flex items-center justify-items-end transition-colors duration-300 ease-in-out'>
         <div className='w-full'>
 
             <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1}}>
-                <h1 className='text-2xl md:text-4xl font-bold text-gray-800'>Let's Get in <span className='text-teal-600'>Touch</span> </h1>
-                <p className='text-sm md:text-normal font-semibold mt-1 text-gray-500'>Any questions? We would be happy to help you</p>
+                <h1 className='text-2xl md:text-4xl font-bold text-gray-800 dark:text-gray-100'>Let's Get in <span className='text-teal-600 dark:text-teal-400'>Touch</span> </h1>
+                <p className='text-sm md:text-normal font-semibold mt-1 text-gray-500 dark:text-gray-400'>Any questions? We would be happy to help you</p>
             </motion.div>
 
             {/* <div className='md:flex justify-center'> */}
@@ -64,7 +64,7 @@ export default function Contact() {
                     <div className="grid grid-cols-2 gap-6 md:grid-cols-2 mb-6">
 
                         <div>
-                            <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-700">Name</label>
+                            <label htmlFor="first_name" className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
                             <input 
                                 {...register("Name", {
                                     required: "Please provide us with your name",
@@ -74,14 +74,15 @@ export default function Contact() {
                                     }
                                 })} 
                                 type="text" id="first_name" 
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg hover:ring-1 hover:ring-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-600 block w-full p-2.5" 
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg hover:ring-1 hover:ring-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-600 block w-full p-2.5
+                                dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 transition-colors duration-300 ease-in-out" 
                                 placeholder="John Doe" 
                             />
-                            <p id="helper-text-explanation" className="mt-2 text-xs text-red-500">{errors.Name?.message}</p>
+                            <p id="helper-text-explanation" className="mt-2 text-xs text-red-500 dark:text-red-300">{errors.Name?.message}</p>
                         </div>
 
                         <div>
-                            <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-700">Phone number</label>
+                            <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Phone number</label>
                             <input 
                                 {...register("PhoneNo", { 
                                     required: "Please provide your phone no.",
@@ -91,16 +92,16 @@ export default function Contact() {
                                     } 
                                 })} 
                                 type="tel" id="phone" 
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg hover:ring-1 hover:ring-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-600 block w-full p-2.5" 
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg hover:ring-1 hover:ring-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-600 block w-full p-2.5  dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 transition-colors duration-300 ease-in-out" 
                                 placeholder="+xx xxxxxxxxxx" 
                             />
-                            <p id="helper-text-explanation" className="mt-2 text-xs text-red-500">{errors.PhoneNo?.message}</p>
+                            <p id="helper-text-explanation" className="mt-2 text-xs text-red-500 dark:text-red-300">{errors.PhoneNo?.message}</p>
                         </div>
 
                     </div>
 
                     <div className="mb-6">
-                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-700">Email address</label>
+                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Email address</label>
                         <input 
                             {...register("Email", { 
                                 required: "Please provide your email address",
@@ -110,14 +111,14 @@ export default function Contact() {
                                 }
                             })} 
                             type="email" id="email" 
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg hover:ring-1 hover:ring-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-600 block w-full p-2.5"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg hover:ring-1 hover:ring-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-600 block w-full p-2.5  dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 transition-colors duration-300 ease-in-out"
                             placeholder="john.doe@company.com"
                         />
-                        <p id="helper-text-explanation" className="mt-2 text-xs text-red-500">{errors.Email?.message}</p>
+                        <p id="helper-text-explanation" className="mt-2 text-xs text-red-500 dark:text-red-300">{errors.Email?.message}</p>
                     </div>
 
                     <div className="mb-6">
-                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-700">How can we help you?</label>
+                        <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">How can we help you?</label>
                         <textarea 
                             {...register("Message", { 
                                 required: "Your query is important to us",
@@ -128,13 +129,13 @@ export default function Contact() {
                             })}
                             rows={3}
                             type="email" id="email" 
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg hover:ring-1 hover:ring-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-600 block w-full p-2.5" 
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg hover:ring-1 hover:ring-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-600 block w-full p-2.5  dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 transition-colors duration-300 ease-in-out" 
                             placeholder="Message us your query and we will get back to you shortly"
                         />
-                        <p id="helper-text-explanation" className="mt-2 text-xs text-red-500">{errors.Message?.message}</p>
+                        <p id="helper-text-explanation" className="mt-2 text-xs text-red-500 dark:text-red-300">{errors.Message?.message}</p>
                     </div> 
 
-                    <button type="submit" className="text-white bg-teal-600 hover:bg-teal-600 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+                    <button type="submit" className="text-white bg-teal-600 dark:bg-teal-400 dark:text-gray-100 hover:bg-teal-600 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
                         {!loading && "Submit" }
                         <ThreeDots
                             visible={loading}
