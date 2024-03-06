@@ -15,7 +15,7 @@ export default function Toast({onClose}) {
   return (
     <motion.div
         id="toast-default" 
-        class="absolute bottom-8 right-10 flex items-center w-full max-w-xs p-4 text-gray-100 bg-green-400 rounded-lg shadow z-1"
+        className="absolute bottom-8 right-10 flex items-center w-full max-w-xs p-4 text-gray-100 bg-green-400 rounded-lg shadow z-1"
         role="alert"
         initial = {{opacity: 0, x:10}}
         animate = {{opacity: 1, x:0}}

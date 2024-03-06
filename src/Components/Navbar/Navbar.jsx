@@ -15,12 +15,12 @@ import React from 'react'
 export default function Navbar() {
   return (
 
-    <div className='absolute w-full'>
-        <nav className="w-10/12 m-auto">
+    <div className='md:absolute w-full'>
+        <nav className="w-11/12 md:w-10/12 m-auto">
             <div className="flex flex-wrap items-center justify-between mx-auto h-16">
                 
                 <a href="/" className="flex items-center" >
-                    <span className="self-center text-xl font-bold whitespace-nowrap text-teal-600">One Oath Foundation</span>
+                    <span className="self-center text-sm md:text-xl font-bold whitespace-nowrap text-teal-600">One Oath Foundation</span>
                 </a>
 
                 <div className="hidden w-full md:block md:w-auto" id="navbar-solid-bg">
