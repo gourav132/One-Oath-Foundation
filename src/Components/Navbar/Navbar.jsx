@@ -35,7 +35,7 @@ export default function Navbar() {
                         <a href="/" className="text-sm block py-2 px-3 md:p-0 text-gray-600 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 ">Get Quote</a>
                     </li>
                     <li>
-                        <a href="/" className="text-sm block py-2 px-3 md:p-0 text-gray-600 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 ">Contact Us</a>
+                        <a href="/" className="text-sm block py-2 px-3 md:p-0 text-gray-600 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700">Contact Us</a>
                     </li>
                 </ul>
                 </div>

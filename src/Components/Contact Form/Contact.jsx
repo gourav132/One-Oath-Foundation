@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react'
 import { useForm } from 'react-hook-form';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Toast } from '../index';
+import { ThreeDots } from 'react-loader-spinner';
 
 import ContactLogo from '../../Assets/contact_us.svg';
 
@@ -11,11 +12,12 @@ export default function Contact() {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();  // Form state management with react-hook-form
     const [ toast, setToast ] = useState(false);   // State for managing toast visibility
     const formRef = useRef(null);  // Ref to access the form element
+    const [loading, setLoading] = useState(false);
 
      // Callback for handling form submission
     const onSubmit = (formFields) => {
         const formData = new FormData(formRef.current);
-
+        setLoading(true);
          // Send form data to Google Sheets via a fetch request
         fetch(
             "https://script.google.com/macros/s/AKfycbwVhTiNOgFV7rSXwkeao8raAPNHU8E5OF9ZGATYYNVOfQQMPt4noUYtL9bA5glxXxiI/exec",
@@ -28,6 +30,7 @@ export default function Contact() {
             .then((res) => {
                 setToast(true)  // Show success toast
                 reset()  // Clear form fields
+                setLoading(false)
             })
             .catch((error) => {
               console.log(error);  // Handling errors
@@ -131,9 +134,20 @@ export default function Contact() {
                         <p id="helper-text-explanation" className="mt-2 text-xs text-red-500">{errors.Message?.message}</p>
                     </div> 
 
-                    <button type="submit" className="text-white bg-teal-600 hover:bg-teal-600 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Submit</button>
-                
-                
+                    <button type="submit" className="text-white bg-teal-600 hover:bg-teal-600 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+                        {!loading && "Submit" }
+                        <ThreeDots
+                            visible={loading}
+                            height="16"
+                            width="20"
+                            color="#ffffff"
+                            radius="9"
+                            ariaLabel="three-dots-loading"
+                            wrapperStyle={{}}
+                            wrapperClass=""
+                        />
+                    </button>
+
 
 
                 </motion.form>
