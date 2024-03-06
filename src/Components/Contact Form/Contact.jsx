@@ -19,6 +19,7 @@ export default function Contact() {
          // Send form data to Google Sheets via a fetch request
         fetch(
             "https://script.google.com/macros/s/AKfycbwVhTiNOgFV7rSXwkeao8raAPNHU8E5OF9ZGATYYNVOfQQMPt4noUYtL9bA5glxXxiI/exec",
+            // process.env.REACT_APP_GOOGLE_SHEET_API,
             {
               method: "POST",
               body: formData
